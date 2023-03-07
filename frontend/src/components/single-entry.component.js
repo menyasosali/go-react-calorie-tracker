@@ -1,0 +1,44 @@
+import React from "react";
+
+import 'bootstrap/dist/css/bootstrap.css'
+
+import {Button, Card, Col, Row} from "react-bootstrap"
+
+
+const Entry = ({entryData, setChangeIngredient, deleteSingleEntry, setChangeEntry}) => {
+    return (
+        <Card>
+            <Row>
+                <Col>Dish:{entryData !== undefined && entryData.dish}</Col>
+                <Col>Ingredients:{entryData !== undefined && entryData.ingredients}</Col>
+                <Col>Calories:{entryData !== undefined && entryData.calories}</Col>
+                <Col>Carbohydrates:{entryData !== undefined && entryData.carbohydrates}</Col>
+                <Col>Protein:{entryData !== undefined && entryData.protein}</Col>
+                <Col>Fat:{entryData !== undefined && entryData.fat}</Col>
+                <Col><Button onClick={() => deleteSingleEntry(entryData._id)}>delete entry</Button></Col>
+                <Col><Button onClick={() => changeIngredient}>change ingredients</Button></Col>
+                <Col><Button onClick={() => changeEntry}>change entry</Button></Col>
+            </Row>
+        </Card>
+    )
+
+    function changeIngredient() {
+        setChangeIngredient(
+            {
+                "change": true,
+                "id": entryData._id
+            }
+        )
+    }
+
+    function changeEntry() {
+        setChangeEntry(
+            {
+                "change": true,
+                "id": entryData._id
+            }
+        )
+    }
+}
+
+export default Entry
